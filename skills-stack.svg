@@ -1,0 +1,166 @@
+<svg width="900" height="600" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<style>
+  .title { font-family: 'Segoe UI', Arial, sans-serif; font-weight: 800; font-size: 30px; letter-spacing: 6px; fill: #ffb347; }
+  .cat { font-family: 'Segoe UI', Arial, sans-serif; font-weight: 800; font-size: 14px; letter-spacing: 3px; }
+  .pill-text { font-family: 'Segoe UI', Arial, sans-serif; font-weight: 800; font-size: 13.5px; letter-spacing: 0.5px; }
+  .pill { }
+  .trace { fill: none; stroke-width: 2; stroke-linecap: round; animation: travel 3.2s linear infinite; }
+  @keyframes travel { to { stroke-dashoffset: -400; } }
+  .glowbar { animation: pulse 2.6s ease-in-out infinite; }
+  .ring { animation: pulse 2.6s ease-in-out infinite; }
+  .corner { stroke: #f5a623; stroke-width: 2; fill: none; opacity: .8; }
+  .grid { stroke: #ffffff; stroke-opacity: .035; stroke-width: 1; }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: .25; }
+  }
+  @keyframes drift {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(14px); }
+    100% { transform: translateX(0); }
+  }
+  @keyframes glowshift {
+    0%, 100% { stop-color: #f5a623; }
+    50% { stop-color: #dc2626; }
+  }
+
+  @keyframes glitch {
+    0%, 92%, 100% { transform: translate(0,0); opacity: 0; }
+    93% { transform: translate(-3px,1px); opacity: .8; }
+    95% { transform: translate(3px,-1px); opacity: .8; }
+    97% { transform: translate(-2px,0); opacity: .6; }
+  }
+  @keyframes scan {
+    0% { transform: translateY(-40px); }
+    100% { transform: translateY(640px); }
+  }
+
+  .ember { animation: rise linear infinite; }
+  @keyframes rise {
+    0% { transform: translateY(0); opacity: 0; }
+    10% { opacity: .9; }
+    90% { opacity: .5; }
+    100% { transform: translateY(-560px); opacity: 0; }
+  }
+</style>
+
+<radialGradient id="bgGrad" cx="50%" cy="15%" r="90%">
+  <stop offset="0%" stop-color="#161022"/>
+  <stop offset="45%" stop-color="#0a0713"/>
+  <stop offset="100%" stop-color="#020103"/>
+</radialGradient>
+
+<radialGradient id="vignette" cx="50%" cy="50%" r="75%">
+  <stop offset="60%" stop-color="#000000" stop-opacity="0"/>
+  <stop offset="100%" stop-color="#000000" stop-opacity="0.55"/>
+</radialGradient>
+
+<linearGradient id="frameGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+  <stop offset="0%" stop-color="#f5a623"><animate attributeName="stop-color" values="#f5a623;#dc2626;#7c3aed;#0d9488;#f5a623" dur="8s" repeatCount="indefinite"/></stop>
+  <stop offset="100%" stop-color="#7c3aed"><animate attributeName="stop-color" values="#7c3aed;#0d9488;#f5a623;#dc2626;#7c3aed" dur="8s" repeatCount="indefinite"/></stop>
+</linearGradient>
+
+<filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+  <feGaussianBlur stdDeviation="1.5" result="blur"/>
+  <feMerge>
+    <feMergeNode in="blur"/>
+    <feMergeNode in="SourceGraphic"/>
+  </feMerge>
+</filter>
+
+<filter id="softglow" x="-50%" y="-50%" width="200%" height="200%">
+  <feGaussianBlur stdDeviation="3" result="blur"/>
+  <feMerge>
+    <feMergeNode in="blur"/>
+    <feMergeNode in="SourceGraphic"/>
+  </feMerge>
+</filter>
+<linearGradient id="scanGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+  <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
+  <stop offset="50%" stop-color="#ffffff" stop-opacity="0.05"/>
+  <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+</linearGradient>
+</defs>
+
+<rect x="0" y="0" width="900" height="600" rx="18" fill="url(#bgGrad)"/>
+<rect x="0" y="0" width="900" height="600" rx="18" fill="url(#vignette)"/>
+
+<g clip-path="none">
+  <g style="animation: drift 12s ease-in-out infinite;">
+    <line class="grid" x1="0" y1="60" x2="900" y2="60"/>
+    <line class="grid" x1="0" y1="180" x2="900" y2="180"/>
+    <line class="grid" x1="0" y1="300" x2="900" y2="300"/>
+    <line class="grid" x1="0" y1="420" x2="900" y2="420"/>
+    <line class="grid" x1="0" y1="540" x2="900" y2="540"/>
+  </g>
+</g>
+
+<rect x="3" y="3" width="894" height="594" rx="16" fill="none" stroke="url(#frameGrad)" stroke-width="5" opacity="0.22" filter="url(#softglow)"/>
+<rect x="3" y="3" width="894" height="594" rx="16" fill="none" stroke="url(#frameGrad)" stroke-width="2" opacity="0.55"/>
+
+<path class="corner" d="M24 60 L24 24 L60 24"/>
+<path class="corner" d="M876 60 L876 24 L840 24"/>
+<path class="corner" d="M24 540 L24 576 L60 576"/>
+<path class="corner" d="M876 540 L876 576 L840 576"/>
+
+<text x="450" y="58" text-anchor="middle" class="title" filter="url(#softglow)">TECH STACK</text>
+<rect class="glowbar" x="340" y="72" width="220" height="2.5" fill="#ffb347" filter="url(#glow)"/>
+<text x="447" y="58" text-anchor="middle" class="title" fill="#ffb347" style="animation: glitch 6s infinite; opacity:0;">TECH STACK</text>
+<text x="453" y="58" text-anchor="middle" class="title" fill="#dc2626" style="animation: glitch 6s infinite .1s; opacity:0;">TECH STACK</text>
+<rect x="0" y="0" width="900" height="40" fill="url(#scanGrad)" style="animation: scan 5s linear infinite;"/>
+
+<!-- Category 1: Languages & Core -->
+<text x="450" y="128" text-anchor="middle" class="cat" fill="#93c5fd">LANGUAGES &amp; CORE</text>
+<rect x="410" y="136" width="80" height="1" fill="#2563eb" opacity="0.5"/>
+<g>
+<g class="pill" style="animation-delay:.00s"><rect x="228" y="158" width="75" height="34" rx="9" fill="#0c1830" stroke="#2563eb" stroke-width="1.4" filter="url(#glow)"/><text x="265.5" y="180" text-anchor="middle" class="pill-text" fill="#bfdbfe">HTML5</text><rect class="trace" x="228" y="158" width="75" height="34" rx="9" stroke="#2563eb" stroke-dasharray="30 250" style="animation-delay:.00s"/></g>
+<g class="pill" style="animation-delay:.10s"><rect x="319" y="158" width="65" height="34" rx="9" fill="#0c1830" stroke="#2563eb" stroke-width="1.4" filter="url(#glow)"/><text x="351.5" y="180" text-anchor="middle" class="pill-text" fill="#bfdbfe">CSS3</text><rect class="trace" x="319" y="158" width="65" height="34" rx="9" stroke="#2563eb" stroke-dasharray="30 250" style="animation-delay:.10s"/></g>
+<g class="pill" style="animation-delay:.20s"><rect x="400" y="158" width="120" height="34" rx="9" fill="#0c1830" stroke="#2563eb" stroke-width="1.4" filter="url(#glow)"/><text x="460" y="180" text-anchor="middle" class="pill-text" fill="#bfdbfe">JAVASCRIPT</text><rect class="trace" x="400" y="158" width="120" height="34" rx="9" stroke="#2563eb" stroke-dasharray="30 250" style="animation-delay:.20s"/></g>
+<g class="pill" style="animation-delay:.30s"><rect x="536" y="158" width="55" height="34" rx="9" fill="#0c1830" stroke="#2563eb" stroke-width="1.4" filter="url(#glow)"/><text x="563.5" y="180" text-anchor="middle" class="pill-text" fill="#bfdbfe">PHP</text><rect class="trace" x="536" y="158" width="55" height="34" rx="9" stroke="#2563eb" stroke-dasharray="30 250" style="animation-delay:.30s"/></g>
+<g class="pill" style="animation-delay:.40s"><rect x="607" y="158" width="65" height="34" rx="9" fill="#0c1830" stroke="#2563eb" stroke-width="1.4" filter="url(#glow)"/><text x="639.5" y="180" text-anchor="middle" class="pill-text" fill="#bfdbfe">JAVA</text><rect class="trace" x="607" y="158" width="65" height="34" rx="9" stroke="#2563eb" stroke-dasharray="30 250" style="animation-delay:.40s"/></g>
+</g>
+
+<!-- Category 2: Frameworks & Databases -->
+<text x="450" y="248" text-anchor="middle" class="cat" fill="#fca5a5">FRAMEWORKS &amp; DATABASES</text>
+<rect x="410" y="256" width="80" height="1" fill="#dc2626" opacity="0.5"/>
+<g>
+<g class="pill" style="animation-delay:.05s"><rect x="240" y="278" width="95" height="34" rx="9" fill="#2a0d0d" stroke="#dc2626" stroke-width="1.4" filter="url(#glow)"/><text x="287.5" y="300" text-anchor="middle" class="pill-text" fill="#fecaca">LARAVEL</text><rect class="trace" x="240" y="278" width="95" height="34" rx="9" stroke="#dc2626" stroke-dasharray="30 250" style="animation-delay:.05s"/></g>
+<g class="pill" style="animation-delay:.15s"><rect x="353" y="278" width="105" height="34" rx="9" fill="#2a0d0d" stroke="#dc2626" stroke-width="1.4" filter="url(#glow)"/><text x="405.5" y="300" text-anchor="middle" class="pill-text" fill="#fecaca">BOOTSTRAP</text><rect class="trace" x="353" y="278" width="105" height="34" rx="9" stroke="#dc2626" stroke-dasharray="30 250" style="animation-delay:.15s"/></g>
+<g class="pill" style="animation-delay:.25s"><rect x="476" y="278" width="75" height="34" rx="9" fill="#2a0d0d" stroke="#dc2626" stroke-width="1.4" filter="url(#glow)"/><text x="513.5" y="300" text-anchor="middle" class="pill-text" fill="#fecaca">MYSQL</text><rect class="trace" x="476" y="278" width="75" height="34" rx="9" stroke="#dc2626" stroke-dasharray="30 250" style="animation-delay:.25s"/></g>
+<g class="pill" style="animation-delay:.35s"><rect x="569" y="278" width="90" height="34" rx="9" fill="#2a0d0d" stroke="#dc2626" stroke-width="1.4" filter="url(#glow)"/><text x="614" y="300" text-anchor="middle" class="pill-text" fill="#fecaca">MARIADB</text><rect class="trace" x="569" y="278" width="90" height="34" rx="9" stroke="#dc2626" stroke-dasharray="30 250" style="animation-delay:.35s"/></g>
+</g>
+
+<!-- Category 3: Development Tools -->
+<text x="450" y="368" text-anchor="middle" class="cat" fill="#c4b5fd">DEVELOPMENT TOOLS</text>
+<rect x="410" y="376" width="80" height="1" fill="#7c3aed" opacity="0.5"/>
+<g>
+<g class="pill" style="animation-delay:.00s"><rect x="187" y="398" width="55" height="34" rx="9" fill="#180d2a" stroke="#7c3aed" stroke-width="1.4" filter="url(#glow)"/><text x="214.5" y="420" text-anchor="middle" class="pill-text" fill="#ddd6fe">GIT</text><rect class="trace" x="187" y="398" width="55" height="34" rx="9" stroke="#7c3aed" stroke-dasharray="30 250" style="animation-delay:.00s"/></g>
+<g class="pill" style="animation-delay:.10s"><rect x="256" y="398" width="90" height="34" rx="9" fill="#180d2a" stroke="#7c3aed" stroke-width="1.4" filter="url(#glow)"/><text x="301" y="420" text-anchor="middle" class="pill-text" fill="#ddd6fe">VS CODE</text><rect class="trace" x="256" y="398" width="90" height="34" rx="9" stroke="#7c3aed" stroke-dasharray="30 250" style="animation-delay:.10s"/></g>
+<g class="pill" style="animation-delay:.20s"><rect x="360" y="398" width="75" height="34" rx="9" fill="#180d2a" stroke="#7c3aed" stroke-width="1.4" filter="url(#glow)"/><text x="397.5" y="420" text-anchor="middle" class="pill-text" fill="#ddd6fe">XAMPP</text><rect class="trace" x="360" y="398" width="75" height="34" rx="9" stroke="#7c3aed" stroke-dasharray="30 250" style="animation-delay:.20s"/></g>
+<g class="pill" style="animation-delay:.30s"><rect x="449" y="398" width="125" height="34" rx="9" fill="#180d2a" stroke="#7c3aed" stroke-width="1.4" filter="url(#glow)"/><text x="511.5" y="420" text-anchor="middle" class="pill-text" fill="#ddd6fe">PHPMYADMIN</text><rect class="trace" x="449" y="398" width="125" height="34" rx="9" stroke="#7c3aed" stroke-dasharray="30 250" style="animation-delay:.30s"/></g>
+<g class="pill" style="animation-delay:.40s"><rect x="588" y="398" width="125" height="34" rx="9" fill="#180d2a" stroke="#7c3aed" stroke-width="1.4" filter="url(#glow)"/><text x="650.5" y="420" text-anchor="middle" class="pill-text" fill="#ddd6fe">ANTIGRAVITY</text><rect class="trace" x="588" y="398" width="125" height="34" rx="9" stroke="#7c3aed" stroke-dasharray="30 250" style="animation-delay:.40s"/></g>
+</g>
+
+<!-- Category 4: AI & Workflows -->
+<text x="450" y="488" text-anchor="middle" class="cat" fill="#5eead4">AI &amp; WORKFLOWS</text>
+<rect x="410" y="496" width="80" height="1" fill="#0d9488" opacity="0.5"/>
+<g>
+<g class="pill" style="animation-delay:.05s"><rect x="225" y="518" width="100" height="34" rx="9" fill="#06211d" stroke="#0d9488" stroke-width="1.4" filter="url(#glow)"/><text x="275" y="540" text-anchor="middle" class="pill-text" fill="#99f6e4">DEEPSEEK</text><rect class="trace" x="225" y="518" width="100" height="34" rx="9" stroke="#0d9488" stroke-dasharray="30 250" style="animation-delay:.05s"/></g>
+<g class="pill" style="animation-delay:.15s"><rect x="343" y="518" width="85" height="34" rx="9" fill="#06211d" stroke="#0d9488" stroke-width="1.4" filter="url(#glow)"/><text x="385.5" y="540" text-anchor="middle" class="pill-text" fill="#99f6e4">OPENAI</text><rect class="trace" x="343" y="518" width="85" height="34" rx="9" stroke="#0d9488" stroke-dasharray="30 250" style="animation-delay:.15s"/></g>
+<g class="pill" style="animation-delay:.25s"><rect x="446" y="518" width="125" height="34" rx="9" fill="#06211d" stroke="#0d9488" stroke-width="1.4" filter="url(#glow)"/><text x="508.5" y="540" text-anchor="middle" class="pill-text" fill="#99f6e4">CLAUDE CODE</text><rect class="trace" x="446" y="518" width="125" height="34" rx="9" stroke="#0d9488" stroke-dasharray="30 250" style="animation-delay:.25s"/></g>
+<g class="pill" style="animation-delay:.35s"><rect x="589" y="518" width="85" height="34" rx="9" fill="#06211d" stroke="#0d9488" stroke-width="1.4" filter="url(#glow)"/><text x="631.5" y="540" text-anchor="middle" class="pill-text" fill="#99f6e4">GEMINI</text><rect class="trace" x="589" y="518" width="85" height="34" rx="9" stroke="#0d9488" stroke-dasharray="30 250" style="animation-delay:.35s"/></g>
+</g>
+
+<circle class="ember" cx="80" cy="560" r="1.8" fill="#f5a623" style="animation-duration:4.2s; animation-delay:0s;"/>
+<circle class="ember" cx="150" cy="560" r="1.8" fill="#dc2626" style="animation-duration:5.1s; animation-delay:0.6s;"/>
+<circle class="ember" cx="230" cy="560" r="1.8" fill="#ffb347" style="animation-duration:3.6s; animation-delay:1.2s;"/>
+<circle class="ember" cx="310" cy="560" r="1.8" fill="#7c3aed" style="animation-duration:4.8s; animation-delay:1.8s;"/>
+<circle class="ember" cx="400" cy="560" r="1.8" fill="#0d9488" style="animation-duration:5.4s; animation-delay:0.3s;"/>
+<circle class="ember" cx="470" cy="560" r="1.8" fill="#f5a623" style="animation-duration:4.0s; animation-delay:2.1s;"/>
+<circle class="ember" cx="540" cy="560" r="1.8" fill="#dc2626" style="animation-duration:4.6s; animation-delay:1.0s;"/>
+<circle class="ember" cx="620" cy="560" r="1.8" fill="#ffb347" style="animation-duration:5.0s; animation-delay:0.8s;"/>
+<circle class="ember" cx="700" cy="560" r="1.8" fill="#7c3aed" style="animation-duration:4.3s; animation-delay:1.6s;"/>
+<circle class="ember" cx="780" cy="560" r="1.8" fill="#0d9488" style="animation-duration:3.9s; animation-delay:2.4s;"/>
+<circle class="ember" cx="830" cy="560" r="1.8" fill="#f5a623" style="animation-duration:5.2s; animation-delay:0.4s;"/>
+</svg>
